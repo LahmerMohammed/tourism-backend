@@ -28,7 +28,6 @@ export class Place {
   @Column({type : "geography" , nullable: false})
   location : string;
 
-  @Column()
   @OneToMany(type => Review ,  review => review.place  , { onDelete : 'NO ACTION'})
   reviews : Review[];
   
