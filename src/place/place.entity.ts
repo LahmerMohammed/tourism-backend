@@ -1,4 +1,5 @@
-import { Review } from "src/review/review.entity";
+import { ReviewEntity } from "src/review/review.entity";
+import { Point } from "src/util/point";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
@@ -6,7 +7,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity('place')
-export class Place {
+export class PlaceEntity {
   
   @PrimaryGeneratedColumn("uuid")
   id : string;
@@ -17,19 +18,20 @@ export class Place {
   @Column({type: "varchar"})
   description : string;
 
-  // TODO : change city , province to enums
-
   @Column()
   city : string;
 
   @Column({type: "varchar"})
   province : string;
 
-  @Column({type : "geography" , nullable: false})
-  location : string;
+  @Column({type : "double precision" , nullable: false})
+  location_x : number;
 
-  @OneToMany(type => Review ,  review => review.place  , { onDelete : 'NO ACTION'})
-  reviews : Review[];
+  @Column({type : "double precision" , nullable: false})
+  location_y : number;
+
+  @OneToMany(type => ReviewEntity ,  review => review.place)
+  reviews : ReviewEntity[];
   
 
 }

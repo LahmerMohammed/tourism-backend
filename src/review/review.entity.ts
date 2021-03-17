@@ -1,12 +1,12 @@
-import { Place } from "src/place/place.entity";
-import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { User } from 'src/user/user.entity';
+import { PlaceEntity } from "src/place/place.entity";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { UserEntity } from 'src/user/user.entity';
 
 
 
 
 @Entity('review')
-export class Review {
+export class ReviewEntity {
 
   @PrimaryGeneratedColumn("uuid")
   id : string;
@@ -14,12 +14,12 @@ export class Review {
   @Column({enum: [1,2,3,4,5]})
   rating : number;
 
-  @ManyToOne(type => Place , place => place.reviews , { cascade: true })
+  @ManyToOne(type => PlaceEntity , place => place.reviews , { cascade: true })
   @JoinColumn({name: 'place_id' , referencedColumnName: 'id'})
-  place : Place;
+  place : PlaceEntity;
 
-  @ManyToOne(type => User , user => user.reviews , { cascade: true , eager: true})
+  @ManyToOne(type => UserEntity , user => user.reviews , { cascade: true , eager: true})
   @JoinColumn({name: 'user_id' , referencedColumnName: 'id'})
-  user : User;
+  user : UserEntity;
 
 }

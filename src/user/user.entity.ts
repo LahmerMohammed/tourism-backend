@@ -1,4 +1,4 @@
-import { Review } from "src/review/review.entity";
+import { ReviewEntity } from "src/review/review.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
@@ -7,7 +7,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity('user')
-export class User {
+export class UserEntity {
 
 
   @PrimaryGeneratedColumn("uuid")
@@ -22,7 +22,7 @@ export class User {
   @Column({type: 'varchar', unique : true})
   email : string; 
 
-  @OneToMany(type => Review , review => review.user)
-  reviews : Review[];
+  @OneToMany(type => ReviewEntity , review => review.user)
+  reviews : ReviewEntity[];
 
 }

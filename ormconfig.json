@@ -5,6 +5,6 @@
   "username": "postgres",
   "password": "root",
   "database": "tourism",
-  "entities": ["src/**/*.entity.js"],
+  "entities": ["dist/**/*.entity{.ts,.js}"],
   "synchronize": true
 }
