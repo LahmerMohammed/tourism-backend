@@ -1,7 +1,6 @@
 import {  Injectable } from "@nestjs/common";
-import { InjectRepository, TypeOrmModule } from "@nestjs/typeorm";
-import { PlaceEntity } from "src/place/place.entity";
-import { Repository  , getManager, getRepository } from "typeorm";
+import { InjectRepository} from "@nestjs/typeorm";
+import { Repository } from "typeorm";
 import { ReviewEntity } from "./review.entity";
 
 

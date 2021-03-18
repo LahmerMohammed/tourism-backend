@@ -1,5 +1,4 @@
 import { ReviewEntity } from "src/review/review.entity";
-import { Point } from "src/util/point";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
