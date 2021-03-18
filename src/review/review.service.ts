@@ -18,6 +18,10 @@ export class ReviewService{
     return this.reviewRepository.save(review);
   }
 
+  updateOne(review : ReviewEntity){
+    return this.reviewRepository.save(review);
+  }
+
 
   findAllByPlace(place_id : string) : Promise<ReviewEntity[]>
   {

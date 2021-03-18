@@ -23,5 +23,10 @@ export class UserService{
     return this.userRepository.find();
   }
 
+  
+
+  deleteOne(user_id : string) {
+    this.userRepository.delete(user_id);
+  }
 
 }

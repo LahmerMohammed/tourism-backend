@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Query } from "@nestjs/common";
+import { UserDTO } from "./user.dto";
 import { UserEntity } from "./user.entity";
 import { UserService } from "./user.service";
 
@@ -18,14 +19,19 @@ export class UserController{
   @Post()
   async addOne(@Body() user: UserEntity) {
     user.password = bcrypt.hashSync(user.password, saltRounds);
-    this.userService.addOne(user);
+    await this.userService.addOne(user);
   }
 
 
   @Get()
   async findAll() : Promise<UserEntity[]>
   {
-    return this.userService.findAll();
+    return await this.userService.findAll();
+  }
+
+  @Delete()
+  async deleteOne(@Query('user_id') user_id: string) {
+    await  this.userService.deleteOne(user_id);
   }
 
 }

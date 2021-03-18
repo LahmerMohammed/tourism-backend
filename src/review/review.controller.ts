@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common";
 import { ReviewEntity } from "./review.entity";
 import { ReviewService } from "./review.service";
 
@@ -19,24 +19,24 @@ export class ReviewController {
     this.reviewService.addOne(review);
   }
 
-  @Get('/:place_id')
-  async findAllByPlace(@Param('place_id') place_id : string) : Promise<ReviewEntity[]>
+  @Get()
+  async findAllByPlace(@Query('place_id') place_id : string) : Promise<ReviewEntity[]>
   {
     return await this.reviewService.findAllByPlace(place_id);
   }
 
-  /*
-  @Get('/:user_id')
-  async findAllByUser(@Param() params) : Promise<ReviewEntity[]>
+  
+  @Get()
+  async findAllByUser(@Query('user_id') user_id : string) : Promise<ReviewEntity[]>
   {
-    return this.reviewService.findAllByUser(params.user_id);
+    return this.reviewService.findAllByUser(user_id);
   }
 
   @Get()
-  async findAllByUserAndPlace(@Param() params) : Promise<ReviewEntity[]>
+  async findAllByUserAndPlace(@Query('user_id') user_id : string , @Query('place_id') place_id : string) : Promise<ReviewEntity[]>
   {
-    return this.reviewService.findAllByUserAndPlace(params.place_id , params.user_id);
-  }*/
+    return this.reviewService.findAllByUserAndPlace(place_id , user_id);
+  }
 
 }
 
