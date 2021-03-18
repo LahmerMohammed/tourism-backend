@@ -17,11 +17,11 @@ export class ReviewEntity {
   @Column({type: "varchar"})
   comment: string;
 
-  @ManyToOne(type => PlaceEntity , place => place.reviews , { cascade: true , nullable: false})
+  @ManyToOne(type => PlaceEntity , place => place.reviews , { onDelete: 'CASCADE' , nullable: false})
   @JoinColumn({name: 'place_id' , referencedColumnName: 'id'})
   place : PlaceEntity;
 
-  @ManyToOne(type => UserEntity , user => user.reviews , { cascade: true , eager: true , nullable: false})
+  @ManyToOne(type => UserEntity , user => user.reviews , {onDelete: 'CASCADE' , eager: true , nullable: false})
   @JoinColumn({name: 'user_id' , referencedColumnName: 'id'})
   user : UserEntity;
 
