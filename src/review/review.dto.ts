@@ -15,6 +15,7 @@ import {
 } from 'class-validator';
 
 import { AutoMap } from '@automapper/classes';
+import { PlaceEntity } from 'src/place/place.entity';
 
 
 

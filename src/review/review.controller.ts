@@ -19,27 +19,13 @@ export class ReviewController {
   async addOne(@Body() reviewDTO : ReviewDTO) {
 
     const review = mapper.map(reviewDTO,ReviewEntity,ReviewDTO);
-    console.log(review);
     this.reviewService.addOne(review);
   }
 
-  @Get()
-  async findAllByPlace(@Query('place_id') place_id : string) : Promise<ReviewEntity[]>
+  @Get('/search')
+  async search(@Body() reviewEntity : ReviewEntity) : Promise<ReviewEntity[]>
   {
-    return await this.reviewService.findAllByPlace(place_id);
-  }
-
-  
-  @Get()
-  async findAllByUser(@Query('user_id') user_id : string) : Promise<ReviewEntity[]>
-  {
-    return this.reviewService.findAllByUser(user_id);
-  }
-
-  @Get()
-  async findAllByUserAndPlace(@Query('user_id') user_id : string , @Query('place_id') place_id : string) : Promise<ReviewEntity[]>
-  {
-    return this.reviewService.findAllByUserAndPlace(place_id , user_id);
+    return await this.reviewService.findBy(reviewEntity);
   }
 
 }

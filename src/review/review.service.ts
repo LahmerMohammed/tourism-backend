@@ -22,22 +22,9 @@ export class ReviewService{
     return this.reviewRepository.save(review);
   }
 
-
-  findAllByPlace(place_id : string) : Promise<ReviewEntity[]>
+  findBy(reviewEntity : ReviewEntity) : Promise<ReviewEntity[]>
   {
-    return this.reviewRepository.find({place: {id: place_id}});
-  }
-
-
-  findAllByUser(user_id : string) : Promise<ReviewEntity[]>
-  {
-    return this.reviewRepository.find({user: {id: user_id}})
-  }
-
-
-  findAllByUserAndPlace(place_id : string , user_id : string) : Promise<ReviewEntity[]>
-  {
-    return this.reviewRepository.find({user: {id: user_id} , place: {id: place_id}});
+    return this.reviewRepository.find(reviewEntity);
   }
   
 }
