@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Query } from "@nestjs/commo
 import { UserDTO } from "./user.dto";
 import { UserEntity } from "./user.entity";
 import { UserService } from "./user.service";
+import { mapper } from '../utility/mapper';
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -17,7 +18,10 @@ export class UserController{
 
 
   @Post()
-  async addOne(@Body() user: UserEntity) {
+  async addOne(@Body() userDTO: UserDTO) {
+    
+    const user = mapper.map(userDTO,UserEntity,UserDTO);
+    
     user.password = bcrypt.hashSync(user.password, saltRounds);
     await this.userService.addOne(user);
   }

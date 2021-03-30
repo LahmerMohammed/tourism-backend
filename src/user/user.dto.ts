@@ -13,17 +13,20 @@ import {
   IsNotEmpty,
 } from 'class-validator';
 
+import { AutoMap } from '@automapper/classes';
+
 
 export class UserDTO {
-
-
+  @AutoMap()
   @IsEmail()
   email: string;
 
+  @AutoMap()
   @IsAlphanumeric()
   @IsNotEmpty()
   username: string;
 
+  @AutoMap()
   @Min(4)
   password: string;
 

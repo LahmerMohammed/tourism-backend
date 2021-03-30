@@ -1,4 +1,6 @@
 import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common";
+import { mapper } from "src/utility/mapper";
+import { ReviewDTO } from "./review.dto";
 import { ReviewEntity } from "./review.entity";
 import { ReviewService } from "./review.service";
 
@@ -14,7 +16,9 @@ export class ReviewController {
   ){}
 
   @Post()
-  async addOne(@Body() review : ReviewEntity) {
+  async addOne(@Body() reviewDTO : ReviewDTO) {
+
+    const review = mapper.map(reviewDTO,ReviewEntity,ReviewDTO);
     console.log(review);
     this.reviewService.addOne(review);
   }

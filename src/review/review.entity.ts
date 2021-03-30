@@ -1,7 +1,7 @@
 import { PlaceEntity } from "src/place/place.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { UserEntity } from 'src/user/user.entity';
-
+import { AutoMap } from '@automapper/classes';
 
 
 
@@ -11,9 +11,11 @@ export class ReviewEntity {
   @PrimaryGeneratedColumn("uuid")
   id : string;
 
+  @AutoMap()
   @Column({enum: [1,2,3,4,5]})
   rating : number;
 
+  @AutoMap()
   @Column({type: "varchar"})
   comment: string;
 
