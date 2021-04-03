@@ -1,8 +1,10 @@
 import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common";
+import { Validator } from "class-validator";
 import { mapper } from "src/utility/mapper";
 import { ReviewDTO } from "./review.dto";
 import { ReviewEntity } from "./review.entity";
 import { ReviewService } from "./review.service";
+import { Validator, Validate } from 'typescript-class-validator';
 
 
 
@@ -16,7 +18,7 @@ export class ReviewController {
   ){}
 
   @Post()
-  async addOne(@Body() reviewDTO : ReviewDTO) {
+  async addOne( @Body() @Validator() reviewDTO : ReviewDTO) {
 
     const review = mapper.map(reviewDTO,ReviewEntity,ReviewDTO);
     this.reviewService.addOne(review);
