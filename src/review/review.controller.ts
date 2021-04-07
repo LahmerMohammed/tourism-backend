@@ -1,10 +1,8 @@
-import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common";
-import { Validator } from "class-validator";
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
 import { mapper } from "src/utility/mapper";
 import { ReviewDTO } from "./review.dto";
 import { ReviewEntity } from "./review.entity";
 import { ReviewService } from "./review.service";
-import { Validator, Validate } from 'typescript-class-validator';
 
 
 
@@ -18,16 +16,27 @@ export class ReviewController {
   ){}
 
   @Post()
-  async addOne( @Body() @Validator() reviewDTO : ReviewDTO) {
+  async addOne( @Body() reviewDTO : ReviewDTO) {
 
     const review = mapper.map(reviewDTO,ReviewEntity,ReviewDTO);
     this.reviewService.addOne(review);
   }
 
-  @Get('/search')
+  @Get('/find')
   async search(@Body() reviewEntity : ReviewEntity) : Promise<ReviewEntity[]>
   {
     return await this.reviewService.findBy(reviewEntity);
+  }
+
+  @Put()
+  async updateOne(@Query('review_id') review_id : string , @Body()review :  ReviewDTO)
+  {
+    await this.reviewService.updateOne(review_id , review);
+  }
+
+  @Delete()
+  async deleteOne(@Query('reivew_id') review_id : string){
+    this.reviewService.deleteOne(review_id);
   }
 
 }
